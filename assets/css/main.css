@@ -1,0 +1,364 @@
+.header {
+    height: 120px;
+    background-image: linear-gradient(0,#fe6433,#f53e2d);
+}
+
+.navbar {
+    display: flex;  
+    justify-content: space-between; 
+}
+
+.navbar__list {
+    list-style: none;
+    padding: 0px;
+}
+
+.navbar__item {
+    margin: 0 8px;
+    position: relative;
+    min-width: 26px;
+}
+.navbar__item,
+.navbar__item--link {
+    display: inline-block;
+    font-size: 1.4rem;
+    color: var(--white-color);
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.navbar__item:hover,
+.navbar__item--link:hover,
+.navbar__icon--link:hover {
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+.navbar__item,
+.navbar__item--link,
+.navbar__icon--link {
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.navbar__item--strong {
+    font-weight: 1000;
+}
+
+.navbar__item--saparate::after { /*Gạch đứng ngăn cách giữa 2 đối tượng*/
+    content: "";
+    display: block;
+    position: absolute;
+    border-left: 1px solid #fb9068;
+    height: 15px;
+    right: -9px; /*Set vị trí cho nó theo đối tượng relative*/
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.navbar__icon--link {
+    color: var(--white-color);
+    text-decoration: none;
+}
+.navbar__icon {
+    font-size: 1.5rem;
+    margin: 0 4px;
+}
+
+.navbar__item--title {
+    cursor: default;
+    color: var(--white-color);
+}
+
+/*QR Code*/
+.header__qr {
+    background-color: var(--white-color);
+    width: 186px;
+    position: absolute;
+    left: 0;
+    top: 120%; /*120% là khoảng cách tính từ top của thẻ cha, 100% là hết chiều cao của thẻ cha + 20% bonus cho dễ nhìn*/
+    border-radius: 2px;
+    display: none;
+    animation: fadeIn ease-in 0.3s;
+}
+
+.navbar__item--hover:hover .header__qr{
+    display: block;
+}
+
+.header__qr--img {
+    padding: 8px;
+    width: 100%;
+}
+
+.header__qr--apps {
+    display: flex; /*Thẻ img nếu display: flex sẽ bị vỡ ảnh nên ta chứa thẻ nào trong thẻ a*/
+    justify-content: space-between;
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
+.header__qr--appstore {
+    height: 15px; /*Set width cũng được*/
+}
+
+.header__qr--googleplay {
+    height: 15px;
+}   
+
+/*Header notification*/
+
+.header__notify {
+    position: absolute;
+    top: 160%;
+    right: 0;
+    width: 404px;
+    background-color: var(--white-color);
+    border: 1px solid #D3D3D3;
+    cursor: default;
+    transform-origin: top right; /*di chuyển tâm của animation sang 90% góc trên bên phải*/
+    animation: headerNotifyGrowth ease-in .25s; /*bthg tâm ở giữa*/
+    will-change: transform;
+    display: none;
+}
+
+.header__notify::before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-style: solid;
+    border-width: 20px 30px;
+    border-color: transparent transparent var(--white-color) transparent;
+    top: -28px;
+    right: 2px;
+}
+
+.header__notify::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 90px;
+    height: 20px;
+    right: 0;
+    top: -16px;
+    background-color: var (--white-color);
+}
+
+@keyframes headerNotifyGrowth {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.navbar__item--link--notify:hover .header__notify {
+    display: block;
+}
+
+.header__notify--header {
+    height: 40px;
+    background-color: var(--white-color);
+    cursor: text;
+}
+
+.header__notify--header h3 {
+    color: #999;
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: 40px;
+    margin-left: 12px;
+}
+
+.header__notify--list {
+    padding: 0;
+}   
+
+.header__notify--item {
+    padding: 12px;
+}
+
+.header__notify--item:hover {
+    background-color: #F7F7F7;
+}
+
+.header__notify--item--viewed {
+    background-color:  rgba(237, 75, 43, 0.08);
+}
+
+.header__notify--link {
+    display: flex;
+    text-decoration: none;
+}
+.header__notify--img {
+    width: 48px;
+    object-fit: contain;
+}
+
+.header__notify--info {
+    margin-left: 12px;
+}
+
+.header__notify--name {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--black-color);
+    font-weight: 700;
+    line-height: 1.3rem;
+    padding-bottom: 6px;
+}
+
+.header__notify--desc {
+    display: block;
+    font-size: 1.2rem;
+    color: #756F6E;
+    font-weight: 500;
+}
+
+.header__notify--footer {
+    display: flex;
+}
+
+.header__notify--viewall {
+    margin: auto;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 8px 0px;
+    width: 100%;
+    text-align: center;
+    color: var(--black-color);
+}
+
+/*Loggin form*/
+.auth-form {
+    width: 500px;
+    background-color: var(--white-color);
+    border-radius: 5px;
+    overflow: hidden; /*Để bo tròn góc. khi thẻ con Footer có Boder thò ra ngoài thì ẩn nó đi*/
+}
+
+.auth-form__container {
+    padding: 0 32px;
+}
+
+.auth-form__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.auth-form__heading {
+    font-size: 2rem;
+}
+
+.auth-form__switch--btn {
+    font-size: 1.6rem;
+    font-weight: 1000px;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.auth-form__form {
+    margin-top: 16px;
+}
+
+.auth-form__input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 16px;
+    padding: 0 12px;
+    font-size: 1.4rem;
+    border: 1px solid var(--boder-color);
+    border-radius: 3px;
+    outline: none;
+}
+
+.auth-form__input:focus {
+    border-color: #777;
+}
+
+.auth-form__aside {
+    margin-top: 18px;
+}
+
+.auth-form__policy_link {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0 8px;
+    font-weight: 1000px;
+}
+
+.auth-form__policy_dk {
+    color: var(--primary-color);
+}
+
+.auth-form__controls {
+    display: flex;
+    margin-top: 80px;
+    right: 0;
+    align-items: flex-end;
+}
+
+.auth-form__controls {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auth-form__control--back {
+    margin-right: 8px;
+}
+
+.auth-form__socials {
+    margin-top: 20px;
+    background-color: #f5f5f5;
+    padding: 12px 36px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.auth-form__socials-icon {
+    font-size: 1.8rem;   
+}
+
+.auth-form__socials--fb .auth-form__socials-icon{
+    color: var(--white-color);
+}
+
+.auth-form__socials--fb {
+    color: var(--white-color);
+    background-color: #3A5A98;
+}
+
+.auth-form__socials--label {
+    margin: 0 30px;
+}
+
+.auth-form__socials--gg {
+    background-color: var(--white-color);
+}
+
+/*Login Form*/
+.auth-form__help {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auth-form__help-link {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #939393;
+}
+
+.auth-form__help-separate {
+    display: block;
+    border: 1px solid #EAEAEA;
+    height: 20px;
+    margin: -2px 16px 0;
+}
+
+.auth-form__help-forgot {
+    color: var(--primary-color);
+}
